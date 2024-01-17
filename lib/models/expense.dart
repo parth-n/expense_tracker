@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
+
+final formatter = DateFormat
+    .yMd(); // utility object created with this yMD constrcutor of DateFormat class.
 
 const uuid = Uuid();
 
@@ -24,4 +28,8 @@ class Expense {
   final double amount;
   final DateTime date;
   final Category category;
+
+  String get formattedDate {
+    return formatter.format(date);
+  }
 }
