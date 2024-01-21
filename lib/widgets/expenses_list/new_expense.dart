@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key});
+
   @override
   State<NewExpense> createState() {
     return _NewExpenseState();
@@ -12,6 +13,19 @@ class _NewExpenseState extends State<NewExpense> {
   final _titlecontroller =
       TextEditingController(); // it is a class provided by flutter
   final _amountcontroller = TextEditingController();
+
+  void _presentDatePicker() {
+    // date picker function , show date picker is inbuilt.
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year - 1, now.month, now.day);
+    final lastDate = now;
+    showDatePicker(
+        context: context,
+        initialDate: now,
+        firstDate: firstDate,
+        lastDate: lastDate);
+  }
+
   @override
   void dispose() {
     _titlecontroller.dispose();
@@ -31,13 +45,33 @@ class _NewExpenseState extends State<NewExpense> {
             label: Text('Title'),
           ),
         ),
-        TextField(
-          controller: _amountcontroller,
-          keyboardType: TextInputType.number,
-          decoration: const InputDecoration(
-            prefixText: '₹',
-            label: Text('Amount'),
-          ),
+        Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: _amountcontroller,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  prefixText: '₹',
+                  label: Text('Amount'),
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 16,
+            ),
+            Expanded(
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text('Selected Date'),
+                IconButton(
+                    onPressed: _presentDatePicker,
+                    icon: const Icon(Icons.calendar_month)),
+              ],
+            ))
+          ],
         ),
         Row(
           children: [
