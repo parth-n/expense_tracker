@@ -36,7 +36,6 @@ void main() {
             .textTheme
             .copyWith(titleLarge: const TextStyle(fontWeight: FontWeight.bold)),
       ),
-      themeMode: ThemeMode.system,
       home: const Expenses(),
     ),
   );
