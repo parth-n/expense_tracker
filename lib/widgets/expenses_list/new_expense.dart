@@ -136,9 +136,7 @@ class _NewExpenseState extends State<NewExpense> {
                     _selectedCategory = value;
                   });
                 }),
-            const SizedBox(
-              height: 16,
-            ),
+            const Spacer(),
             TextButton(
                 onPressed: () {
                   Navigator.pop(context);
